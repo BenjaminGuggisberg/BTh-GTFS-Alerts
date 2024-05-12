@@ -1,0 +1,6 @@
+ROUTEN UND STOPS LADEN - PROBLEM STOPS WERDEN VOR ROUTEN GERENDERT
+loadRoutes(map, setLoadingAnimation, callOSM, Ways, apiData, handleEventClick, routeLayerGroup);
+Überprüfen, ob die Knotenpunkte und API-Daten definiert sind und Daten enthalten
+if (Nodes && Object.keys(Nodes).length > 0 && apiData && apiData.entity) {
+   loadStops(map, Nodes, apiData, handleEventClick, nodeLayerGroup);
+}

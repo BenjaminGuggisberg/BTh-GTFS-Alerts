@@ -1,0 +1,24 @@
+           // const drawStops = (map, stops) => {
+        //     // Überprüfen, ob stops ein einzelnes Objekt ist
+        //     if (!Array.isArray(stops)) {
+        //         stops = [stops];
+        //     }
+            
+        //     const circles = []; // Array zum Speichern aller Kreise
+            
+        //     stops.forEach(stop => {
+        //         const { lat, lon, name } = stop;
+                
+        //         // Überprüfen, ob lat und lon definiert sind, bevor ein LatLng-Objekt erstellt wird
+        //         if (typeof lat !== 'undefined' && typeof lon !== 'undefined') {
+        //             const circle = L.circleMarker([lat, lon], { radius: 5, color: 'blue' }).addTo(map)
+        //                 .bindPopup(`<b>${name}</b>`); // Popup mit dem Namen der Haltestelle
+        //             circles.push(circle);
+        //         }
+        //     });
+        
+        //     return circles;
+        // };
+
+        //CIRCLES.ONCLICK(EVENT) EINFÜGEN
+        

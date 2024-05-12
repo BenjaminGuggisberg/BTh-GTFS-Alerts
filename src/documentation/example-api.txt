@@ -1,0 +1,55 @@
+
+useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  const fetchUserData = () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(data => {
+        setUsers(data);
+        if (data.length > 0) {
+          setFirstUserJson(JSON.stringify(data[0], null, 2));
+        }
+      })
+  }
+
+  
+    <div>
+      <h1>User Data:</h1>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            <strong>Name:</strong> {user.name}, <strong>Email:</strong> {user.email}
+          </li>
+        ))}
+      </ul>
+      {firstUserJson && (
+        <div>
+          <h2>First User JSON:</h2>
+          <pre>{firstUserJson}</pre>
+        </div>
+      )}
+    </div>
+  
+
+
+
+Erklärung:
+
+
+1.      <ul> und {users.map(...)}: Dieser Abschnitt erstellt eine ungeordnete Liste (<ul>) und verwendet JSX-Ausdrücke, 
+        um durch das users-Array zu iterieren und für jeden Benutzer ein <li>-Element zu erstellen.
+
+2.      users.map(user => ...): Hier wird die map-Funktion auf dem users-Array angewendet. 
+        Diese Funktion durchläuft jedes Element des users-Arrays und führt für jedes Element eine Operation aus. 
+        user ist der Name des aktuellen Elements (ein Benutzerobjekt) während der Iteration.
+
+3.      <li key={user.id}>...</li>: Für jedes Benutzerobjekt wird ein <li>-Element erstellt. 
+        key wird verwendet, um React mitzuteilen, welche Elemente verändert, hinzugefügt oder entfernt wurden. 
+        Es ist wichtig, dass jeder Schlüssel eindeutig ist. Hier verwenden wir user.id als Schlüssel, 
+        da es wahrscheinlich eindeutig für jeden Benutzer ist.
+
+4.      <strong>Name:</strong> {user.name}, <strong>Email:</strong> {user.email}: 
+        Innerhalb jedes <li>-Elements werden der Name und die E-Mail-Adresse des Benutzers angezeigt. 
+        <strong> wird verwendet, um den Text fett zu machen.

@@ -1,0 +1,25 @@
+export const fetchRouteData = async (routeId) => {
+    const overpassUrl = "http://overpass-api.de/api/interpreter";
+    const queryTemplate = `
+    [out:json];
+    (
+    relation["gtfs:route_id"="${routeId}"];
+    );
+    out geom;
+    `;
+
+    try {
+        const response = await fetch(overpassUrl, { method: 'POST', body: queryTemplate });
+        const routeData = await response.json();
+        return routeData;
+    } catch (error) {
+        if (error.response && error.response.status === 504) {
+            alert("Error 504: Gateway Timeout");
+        } else if (error.response && error.response.status === 429) {
+            alert("Error 429: Too Many Requests");
+        } else {
+            alert(`Error fetching route data: ${error.message}`);
+        }
+        throw error;
+    }
+};

@@ -1,0 +1,88 @@
+WICHTIG:
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+Bericht:
+
+Konzeptuelle Beschreibung (Mockup), Umsetzungsmöglichkeiten, Ziel der Visualisierung, Darstellungen, Workflow Applikation
+- Mockup 
+- Zielsetzung 
+- Userpersona 
+- Zweck 
+- Konzept und Visualisierungsziele 
+- Datenquellen 
+- Datenfluss 
+- Struktureller 
+- Aufbau 
+- Auftrag des Bundes 
+- politische Umgebung, Normen und Standards
+- Datenherkunft und Begriffe 
+- Wissenschaftliche Analyse
+        - Bereits durchgeführte Analysen
+        - Nutzen der Daten
+        - existierende Anwendungen
+        - generierte Wertschöpfung
+        - Marktanalyse
+
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+Technisch:
+
+> Alle Anfragen (API) in Parent (strukturell) und an Child-Komponenten weitergeben
+> Ermöglichung räumlicher Abfragen in der API (OSM API direkt in Parent mit Informationen aus GTFS API implementieren)
+> Child Komponente mit Filtrierung der Darstellungen
+> Child Komponente mit Liste und mit Karte
+> Umsetzung Mehrfachabfragen siehe C:\Users\benjg\OneDrive - FHNW\Documents\FHNW - Geomatik\Vorlesungen\G6\04_Bachelor-Arbeit\01b_data\Bei der Abfrage auf mehrere Objekte.txt
+> Steigerung der Performance
+
+--> Struktureller Aufbau APIs, Ermöglichung räumlicher Filtrierung (Kantonsgrenzen / Gemeindegrenzen), Performance durch Mulit-Request 
+--> Änderung in der Logik der Daten-Response - Erfordert andere Datenverarbeitung in der Routes.js-Komponente
+    --> ResponseBody: https://overpass-turbo.eu/ gegliedert in tags. Stand jetzt in for-Loop direkt gezeichnet (Logik-Anpassung)
+
+--> Implementierung zusätzlich der gtfs:stop_Ids mittels API / statischem Datensatz (CSV) zu den sloids von Swisstopo (keine Umsetzung in OSM overpass API) 
+    Evtl. FastApi Endpoint für Koordinaten der sloid Nummern
+--> Konditionelles Rendern der Stops und Ways in der Routes.js-Komponente basierend auf Agency_Id, Aktualität (Einfärbung vergangener, aktueller, zukünftiger events), CAUSE
+--> Konditionelles Rendering der Legende in der Routes.js-Komponente basierend auf der Kategorisierung der Stops und Ways
+--> Bei mehreren Abfragen Filterung zurücksetzen (vor neuen API aufrufen!)
+--> Weitere Filtrierungsmöglichkeiten
+--> Implementation einer stufenbasierten Visualisierung der Ereignisse in Routes.js mittels Darstellung als Clustering (# --> Nodes / Ways)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Technisch konkret:
+
+Einzelabfrage: 
+
+const queryTemplate = `
+    [out:json];
+    (
+    relation["gtfs:route_id"="${routeId}"];
+    );
+    out geom;
+    `;
+
+Mehrfachabfrage:
+
+const queryTemplate = `
+    [out:json];
+    (
+    relation["gtfs:route_id"="91-8-H-j24-1"];
+    relation["gtfs:route_id"="92-4-J-j24-1"];
+    relation["gtfs:route_id"="92-7-j24-1"];
+    relation["gtfs:route_id"="91-21-G-j24-1"];
+    );
+    out geom;
+    `;
+
+für Ways Array = ["91-8-H-j24-1", "92-4-J-j24-1", "92-7-j24-1", "91-21-G-j24-1"]
+--> Evtl. Grenzen (TimeOut bei 30 Routen/50 Routen mit weiterer Abfrage)
+
+
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+Weitere Implementations- und Weiterentwicklungsmöglichkeiten:
+
+C:\Users\benjg\OneDrive - FHNW\Documents\FHNW - Geomatik\Vorlesungen\G6\04_Bachelor-Arbeit\10_Wichtig_Entwicklung_technisch\ToDos.docx

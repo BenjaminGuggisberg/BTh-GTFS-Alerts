@@ -1,0 +1,663 @@
+/* TODO:
+Auslegung für PC:
+- Detail an Seite anpassen Responsive bei schmaler Seitenbreite
+- Max. Seite width: 600px
+ */
+
+ html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('./images/infrastruktur.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  font-family: "SBB Web Roman" !important;
+  letter-spacing: 1px;
+}
+
+html::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Hintergrundfarbe mit Transparenz */
+}
+
+
+.container-wrapper {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  min-width: 640px;
+}
+
+.container {
+    min-width: 800px; /*min-width: Damit CSS nicht verschoben wird (Desktop-Application)*/
+    max-width: 1500px;
+    height: 85vh;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: #f0f0f0c4;
+    /* background-color: rgba(255, 127, 80, 0.623); */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 0.8rem;
+}
+
+.title-box {
+    padding: 15px;
+    border: 5px solid white;
+    background-color: coral;
+}
+
+.main-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 30%;
+    background-color: #f0f0f0;
+    padding: 10;
+}
+
+/* @media only screen and (max-width: 1200px) {
+  .title {
+    height: 35%;
+  }
+} */
+/* @media only screen and (max-width: 600px) {
+  .title {
+    height: 50%;
+  }
+
+} */
+
+
+.main {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    margin: 5px;
+    height: 50%;
+}
+
+.main2 {
+  flex-grow: 1;
+    background-color: #f0f0f0;
+    margin: 5px;
+    height: 50%;
+}
+
+.register-tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-width: 640px;
+    height: 5%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+}
+
+.register-tabs button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-tabs button.active {
+    background-color: #ddd;
+}
+
+.flex-container {
+    display: flex;
+    height: 100%;
+    text-align: center;
+  }
+
+  .links {
+    width: 100%;
+    background-color:  #f0f0f0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .links ul {
+    height: 95%;
+  }
+
+  .detail {
+    width: 50%;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    position: relative;
+    font-family: "SBB Web Roman";
+    /* border: 1px solid black; */
+    overflow: auto;
+  }
+
+  .titleDetail {
+    /* color: white; */
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: large;
+  }
+
+  .half-width {
+    width: 50%;
+  }
+
+
+
+/* .api:hover {
+  background-color: rgb(255, 95, 36);
+
+
+} */
+
+  .event-button {
+    font-family: inherit;
+    letter-spacing: inherit;
+    display: block;
+    width: 95%;
+    min-width: 90%;
+    padding: 35px;
+    padding-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 12px;
+    min-height: 5rem;
+    background-color: #e4e3e3;
+    color: black;
+    border: none;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .event-button:hover {
+    background-color: rgb(240, 239, 239);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.386);
+    transform: scale(1);
+    /* color: white; */
+  }
+
+  .selected-event-button {
+    background-color: rgb(240, 239, 239) ; /*grey - Hintergrundfarbe für den ausgewählten Button */
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.386);
+  }
+
+  /* .selected-event-button:hover {
+    background-color: coral;   Hintergrundfarbe für den ausgewählten Button beim Überfahren 
+  } */
+
+  .event-list {
+    max-height: 45vh; /* oder eine andere geeignete maximale Höhe */
+    overflow-y: auto;
+  }
+
+  /* @media only screen and (max-width: 1150px) {
+    .event-button {
+      font-size: medium;
+    }
+  }
+  @media only screen and (max-width: 850px) {
+    .event-button {
+      font-size: small;
+    }
+  } */
+
+
+
+  .links ul {
+    list-style-type: none;
+    width: 100%;
+    margin-right: 40px;
+  }
+
+  .links ul li {
+    margin-bottom: 10px;
+  }
+
+
+  .close-button {
+    font-family: 'Comic Sans MS', cursive;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    width: 30px;
+    padding: 10px;
+    background-color: inherit;
+    color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: large;
+    transition: font-size 0.3s; /* Übergangseffekt für die Schriftgröße */
+  }
+
+  .close-button:hover {
+    font-size: 24px; /* Ändern der Schriftgröße beim Hovern */
+  }
+
+  .Okay {
+    font-family: "SBB Web Roman";
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: large;
+    background-color: #ddd;
+    border: 1px solid grey;
+    transition: background-color 0.4s, color 0.4s;
+  }
+
+  .Okay:hover {
+    background-color: grey;
+    color: white;
+  }
+
+
+  /* Stile für die Dropdown-Container */
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Stile für Dropdown-Elemente */
+  .dropdown {
+    position: relative;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+  }
+
+  /* @media only screen and (max-width: 600px) {
+    .dropdown {
+      width: 100%;  Dropdowns nehmen die volle Breite ein
+    } */
+
+    /* .dropdown-input {
+      width: 40%;
+    }
+  }
+   */
+
+/* Adjusting width of dropdown-content to match input */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 2;
+    border-radius: 0.8rem;
+    margin-top: 4px;
+  }
+
+  /* Positioning dropdown-content relative to input */
+  .dropdown-content p {
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-family: "SBB Web Roman";
+    border-radius: 0.8rem;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .dropdown-content p:hover {
+    background-color: rgb(240, 239, 239);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.386);
+    transform: scale(1);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+  /* Stile für Textfelder */
+  .dropdown-input {
+    margin: 10px 10px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-family: "SBB Web Roman";
+    border-radius: 0.8rem;
+    border: none;
+    color: grey;
+  }
+
+  .dropdown-input:hover {
+    border: 1px solid black;
+  }
+
+  .kanton-input:hover {
+    border: 1px solid black;
+  }
+
+
+  .textfilter-input {
+    padding: 15px 25px;
+    font-size: 16px;
+    font-family: "SBB Web Roman";
+    font-family: inherit;
+    letter-spacing: inherit;
+    border-radius: 0.8rem;
+    border: none;
+  }
+
+  .input-container {
+    display: inline-block;
+    position: relative;
+  }
+
+  input[type="text"] {
+    margin: 2px 10px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-family: "SBB Web Roman";
+    border-radius: 0.8rem;
+    border: none;
+  }
+
+  .suggestions-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 2;
+    top: calc(100% + 10px);
+    border-top: none;
+    background-color: #f9f9f9; /* match dropdown-content background color */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* match dropdown-content box shadow */
+    border-radius: 0.8rem; /* match dropdown-content border radius */
+    display: block; /* display as block by default */
+  }
+
+  .suggestions-container .suggestion {
+    padding: 10px; /* match dropdown-content padding */
+    cursor: pointer;
+    background-color: #f9f9f9; /* match dropdown-content background color */
+    font-family: "SBB Web Roman";
+    border-radius: 0.8rem;
+    z-index: 3;
+  }
+
+  .suggestions-container .suggestion:hover {
+    background-color: #f2f2f2; /* match dropdown-content hover background color */
+  }
+
+
+
+  /* Stile für Textfelder, wenn sie fokussiert sind */
+  .dropdown-input:focus {
+    outline: none;
+    border: 1px solid grey;
+  }
+
+  .clear-button {
+    margin-left: 25px;
+    background-color: inherit;
+    border: none;
+    color: red;
+    font-size: medium;
+    font-family: 'Comic Sans MS', cursive;
+  }
+
+  .clear-button2 {
+    position: absolute;
+    right: 25px;
+    background-color: inherit;
+    top: 30%;
+    border: none;
+    color: red;
+    font-size: medium;
+    font-family: 'Comic Sans MS', cursive;
+  }
+
+  .textfilter-wrapper {
+    position: relative;
+  }
+  .textfilter-input:hover {
+    border: 1px solid black;
+  }
+
+  .api {
+    padding: 15px 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: medium;
+    border: none;
+    background-color: coral;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    color: white;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .api:hover {
+    background-color: rgb(255, 95, 36);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+    
+
+  #alerts.active {
+    background-color: white;
+    color: black;
+    /* font-family: inherit; */
+    /* letter-spacing: inherit; */
+    /* border: 1px solid rgba(0, 0, 0, 0.386); */
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.386); */
+  }
+
+  #settings.active {
+    background-color: white;
+    color: black;
+    /* font-family: inherit; */
+    /* letter-spacing: inherit; */
+    /* border: 1px solid rgba(0, 0, 0, 0.386); */
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.386); */
+  }
+
+  #alerts {
+    border-radius: 0.8rem;
+    font-family: inherit;
+    letter-spacing: inherit;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  #settings {
+    border-radius: 0.8rem;
+    font-family: inherit;
+    letter-spacing: inherit;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  #alerts:hover{
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.386);
+    transform: scale(1);
+  }
+
+  #settings:hover {
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.386);
+    transform: scale(1);
+  }
+
+  #alerts.active:hover {
+    background-color: white;
+    box-shadow: none;
+    transform: none;
+  }
+
+  #settings.active:hover {
+    background-color: white;
+    box-shadow: none;
+    transform: none;
+  }
+
+
+  /* Ladeanimation Routen auf Karte  */
+
+
+
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 870px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparenter Hintergrund */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading-icon {
+    animation: slideIn 2s ease-out infinite; /* Animation von rechts nach links */
+    width: 150px;
+    margin-top: 15%;
+  }
+
+  .sortbutton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: large;
+    font-family: "SBB Web Roman";
+    letter-spacing: 1px;
+  }
+
+  .sortbutton:hover {
+    border: 1px solid red;
+    border-radius: 0.8rem;
+    padding: 10px 15px;
+    margin-right: 5px;
+  }
+
+  .active-sortbutton {
+    border-radius: 0.8rem;
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: red;
+    color: white;
+  }
+
+  .sortieren {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    margin-top: 5%;
+    font-size: larger;
+    font-family: "SBB Web Roman";
+    letter-spacing: 1px;
+    /* color: rgb(196, 195, 195); Farbe für 'Sortieren' bei filter.png*/
+    color: black; 
+    
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparenter Hintergrund */
+    z-index: 999; /* Über dem Inhalt positionieren */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 640px;
+    font-family: "SBB Web Roman";
+    letter-spacing: 1px;
+  }
+
+.leaflet-control-layers-list {
+  text-align: left; /* Text linksbündig machen */
+  padding-left: 1px; /* Einen Abstand links hinzufügen */
+}
+
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.swing {
+  animation: swing 1.5s; /* Animation dauert 1 Sekunde und wiederholt sich zweimal */
+}
+
+.emma {
+  position: absolute;
+  top: 88%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 0.8rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none; /* Anfangs ausgeblendet */
+}
+
+.image-container:hover .emma {
+  display: block; /* Einblenden beim Hover-Ereignis */
+}
